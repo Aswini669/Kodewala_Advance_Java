@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+		<!-- bean definitions here -->
+		<bean id="itm" class="com.kodewala.ioc.Items">
+		    <property name="srlNo" value="al4562"></property>
+		    <property name="itemName" value="alexa"></property>
+		    <property name="price" value="4999"></property>
+		</bean>
+		
+		<bean id="prod" class="com.kodewala.ioc.Product">
+		   <property name="srlNo" value="SM1452"></property>
+		   <property name="prodName" value="smart watche"></property>
+		   <property name="price" value="1299"></property>
+		</bean>
+		
+		
+
+</beans>
