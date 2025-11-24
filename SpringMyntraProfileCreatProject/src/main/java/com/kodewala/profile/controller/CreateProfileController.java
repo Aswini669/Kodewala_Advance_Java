@@ -1,0 +1,46 @@
+package com.kodewala.profile.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kodewala.profile.entities.UserProfile;
+
+@Controller
+public class CreateProfileController {
+
+	@RequestMapping("prof")
+	public String makeProfile() {
+		return "showProfile";
+	}
+	
+	@RequestMapping("showProfile")
+	public String createProfile(@ModelAttribute UserProfile userProfile, Model model) {
+		System.out.println("First Name: " + userProfile.getFirstName());
+		System.out.println("Last Name: " + userProfile.getLastName());
+		System.out.println("Gender: " + userProfile.getGender());
+		System.out.println("Email: " + userProfile.getEmail());
+		System.out.println("Mobile Number: " + userProfile.getMobile());
+		System.out.println("Password: " + userProfile.getPassword());
+		System.out.println("Confirm Password: " + userProfile.getConfirmPassword());
+		
+		String email = userProfile.getEmail();
+		String mobile = userProfile.getMobile();
+		
+		String userId = generateUserId(email, mobile);
+		model.addAttribute("userID", userId);
+		
+		System.out.println(" Generated user id is: " + userId);
+		
+		
+		return "successProfile";
+	}
+	
+	public static String generateUserId(String email, String mobile) {
+		String username = email.split("@")[0];
+		String first4 = username.length() >= 4 ? username.substring(0, 4) : username;
+		String last4 = mobile.substring(mobile.length() - 4);
+		return first4 + last4;
+	}
+}
