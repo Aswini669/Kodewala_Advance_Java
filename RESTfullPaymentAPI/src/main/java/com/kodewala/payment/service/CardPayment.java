@@ -16,7 +16,7 @@ public class CardPayment implements PaymentService{
 	PaymentDao paymentDao;
 	
 	@Override
-	public String pay(PaymentBean paymentBean) {
+	public int pay(PaymentBean paymentBean) {
 		System.out.println("inside card payment");
 		PaymentEntity entity = new PaymentEntity();
 		entity.setPaymentRefNo(paymentBean.getPaymentRefNo());
@@ -24,7 +24,7 @@ public class CardPayment implements PaymentService{
 		entity.setStatus(paymentBean.getStatus());
 		entity.setDescription(paymentBean.getDescription());
 		
-		String result = paymentDao.processPayment(entity);
+		int result = paymentDao.processPayment(entity);
 		System.out.println(result);
 		return result;
 	}

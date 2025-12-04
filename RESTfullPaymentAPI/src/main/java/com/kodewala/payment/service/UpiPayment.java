@@ -8,9 +8,9 @@ import com.kodewala.payment.bean.PaymentBean;
 public class UpiPayment implements PaymentService{
 
 	@Override
-	public String pay(PaymentBean paymentBean) {
+	public int pay(PaymentBean paymentBean) {
 		System.out.println("inside UPI payment");
-		return null;
+		return 0;
 	}
 
 }

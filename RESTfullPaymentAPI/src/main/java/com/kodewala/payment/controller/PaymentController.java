@@ -1,6 +1,7 @@
 package com.kodewala.payment.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,9 +16,9 @@ public class PaymentController {
 	PaymentService paymentService;
 
 	@PostMapping("doPayment")
-	public String doPayment(@RequestBody PaymentBean paymentBean) {
+	public ResponseEntity doPayment(@RequestBody PaymentBean paymentBean) {
 		System.out.println("Details of Payment: " + paymentBean.getOrderId());
-		String result = paymentService.pay(paymentBean);
-		return result;
+		int result = paymentService.pay(paymentBean);
+		return ResponseEntity.ok("Payment id is: "+result);
 	}
 }

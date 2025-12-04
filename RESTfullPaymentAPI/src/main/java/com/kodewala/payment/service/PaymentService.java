@@ -7,5 +7,5 @@ import com.kodewala.payment.bean.PaymentBean;
 @Service
 public interface PaymentService {
 
-	public String pay(PaymentBean paymentBean);
+	public int pay(PaymentBean paymentBean);
 }

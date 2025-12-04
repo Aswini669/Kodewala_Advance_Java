@@ -17,13 +17,13 @@ public class PaymentEntity {
 	private String status;
 	private String description;
 	
-	public int getId() {
+		public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getPaymentRefNo() {
+		public String getPaymentRefNo() {
 		return paymentRefNo;
 	}
 	public void setPaymentRefNo(String paymentRefNo) {
