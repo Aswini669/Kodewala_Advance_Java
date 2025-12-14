@@ -18,4 +18,13 @@ public class GlobalException {
 		errorResponse.setErrMsg("Please Enter Unique Id");
 		return ResponseEntity.ok(errorResponse);
 	}
+	
+	@ExceptionHandler(NoIndexOutOfBoundException.class)
+	public ResponseEntity indexOutOfBoundExceptionHanlde(NoIndexOutOfBoundException ex) {
+		ErrorResponse errorResponse = new ErrorResponse();
+		errorResponse.setErrCode("IND-6542");
+		errorResponse.setErrMsg(ex.getMessage());
+		return ResponseEntity.ok(errorResponse);
+		
+	}
 }

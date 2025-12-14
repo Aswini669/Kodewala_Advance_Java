@@ -1,19 +1,26 @@
 package com.kodewala.myntra.invoice.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kodewala.myntra.invoice.bean.InvoiceBean;
 import com.kodewala.myntra.invoice.entities.InvoiceEntity;
+import com.kodewala.myntra.invoice.exception.GlobalException;
 import com.kodewala.myntra.invoice.service.InvoiceService;
 
 @RestController
 public class InvoiceController {
+
 	
 	@Autowired
 	InvoiceService invoiceService;
+
 
 	@PostMapping("generatorInvoice")
 	public String generatorInvoice(@RequestBody InvoiceBean invoiceBean) {
@@ -39,5 +46,12 @@ public class InvoiceController {
 	public String deleteById(@RequestBody int invoiceId) {
 		String deleteMsg = invoiceService.deleteDetailsById(invoiceId);
 		return deleteMsg;
+	}
+	
+	@GetMapping("/getInvId/{status}")
+	public String findByStatus(@PathVariable String status) {
+		List<InvoiceEntity> invoices = invoiceService.findVoiceByStatus(status);
+		System.out.println("cyz");
+		return "you invoice data : " + invoices.get(0).getDescription();
 	}
 }

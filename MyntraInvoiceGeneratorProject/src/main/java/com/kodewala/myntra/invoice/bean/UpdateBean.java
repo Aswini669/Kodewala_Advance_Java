@@ -1,31 +1,20 @@
-package com.kodewala.myntra.invoice.entities;
+package com.kodewala.myntra.invoice.bean;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+public class UpdateBean {
 
-@Entity
-@Table(name = "invoice")
-public class InvoiceEntity {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int inId;
+	private int invId;
 	private int invValue;
 	private String note;
 	private String gstNo;
 	private String status;
 	private String description;
-	private String activeStatus="A";
+	private String activeStatus;
 	
-	
-	public int getInId() {
-		return inId;
+	public int getInvId() {
+		return invId;
 	}
-	public void setInId(int inId) {
-		this.inId = inId;
+	public void setInvId(int invId) {
+		this.invId = invId;
 	}
 	public int getInvValue() {
 		return invValue;
@@ -57,13 +46,10 @@ public class InvoiceEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 	public String getActiveStatus() {
 		return activeStatus;
 	}
 	public void setActiveStatus(String activeStatus) {
 		this.activeStatus = activeStatus;
 	}
-	
-	
 }

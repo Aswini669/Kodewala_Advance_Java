@@ -1,9 +1,12 @@
 package com.kodewala.myntra.invoice.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.kodewala.myntra.invoice.bean.InvoiceBean;
 import com.kodewala.myntra.invoice.entities.InvoiceEntity;
+import com.kodewala.myntra.invoice.exception.NoIndexOutOfBoundException;
 import com.kodewala.myntra.invoice.repositories.InvoiceRepo;
 
 @Service
@@ -54,13 +57,34 @@ public class InvoiceServiceImplementation implements InvoiceService{
 		
 	   invoiceRepo.save(details);
 		
-		return invoiceBean.getInvId();
+	   return invoiceBean.getInvId();
 	}
 
 	@Override
 	public String deleteDetailsById(int invoiceId) {
-		invoiceRepo.deleteById(invoiceId);
-		return "Delete Successfully";
+		InvoiceEntity entity = invoiceRepo.findById(invoiceId).get();
+		entity.setActiveStatus("D");
+		entity = invoiceRepo.save(entity);
+		
+		if(entity != null) {
+			return "Invoice deleted successfully";
+		}
+		else {
+			return "Unable to delete invoice";
+		}
 	}
+
+	@Override
+	public List<InvoiceEntity> findVoiceByStatus(String status) {
+	
+		List<InvoiceEntity> invoices = invoiceRepo.findInvoiceByStatus(status);
+		System.out.println(invoices);
+		if(invoices.isEmpty()) {
+			throw new NoIndexOutOfBoundException("Please enter a valid input");
+		}
+		return invoices;
+	}
+	
+	
 
 }
