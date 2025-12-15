@@ -1,9 +1,12 @@
 package com.kodewal.flipkart.invoice.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kodewal.flipkart.invoice.entities.InvoiceEntity;
+import com.kodewal.flipkart.invoice.exception.InvalidDataException;
 import com.kodewal.flipkart.invoice.repositories.InvoiceRepo;
 import com.kodewal.flipkart.invoice.request.InvoiceRequest;
 
@@ -60,5 +63,26 @@ public class InvoiceServiceImplementation implements InvoiceService{
 		invoiceRepo.deleteById(invoiceId);
 		return "Delete Invoice Successfully";
 	}
+
+	@Override
+	public List<InvoiceEntity> findInvoiceByStatus(String status) {
+		List<InvoiceEntity> invoices = invoiceRepo.findInvoiceByStatus(status);
+		if(invoices.isEmpty()) {
+			throw new InvalidDataException("Provide Valid Data");
+		}
+		return invoices;
+	}
+
+	@Override
+	public List<InvoiceEntity> fiterInvByStatusAndValue(String status, int invValue) {
+		System.out.println("heoloodnsdcv");
+		List<InvoiceEntity> invoices = invoiceRepo.filterByStatusAndValue(status, invValue);
+		if(invoices.isEmpty()) {
+			throw new InvalidDataException("Provide Valid Data");
+		}
+		return invoices;
+	}
+	
+	
 
 }

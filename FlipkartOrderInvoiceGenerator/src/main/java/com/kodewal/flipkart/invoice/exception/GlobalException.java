@@ -18,4 +18,14 @@ public class GlobalException {
 		errorResponse.setErrMsg("Please Enter valid Id");
 		return ResponseEntity.ok(errorResponse);
 	}
+	
+	@ExceptionHandler(InvalidDataException.class)
+	public ResponseEntity invalidDataExceptionHandle(InvalidDataException ex) {
+		ErrorResponse errorResponse = new ErrorResponse();
+		errorResponse.setErrCode("FIE-87985");
+		errorResponse.setErrMsg(ex.getMessage());
+		return ResponseEntity.ok(errorResponse);
+	}
+	
+	
 }

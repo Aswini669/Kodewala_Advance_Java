@@ -1,5 +1,7 @@
 package com.kodewal.flipkart.invoice.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.kodewal.flipkart.invoice.entities.InvoiceEntity;
@@ -12,4 +14,6 @@ public interface InvoiceService {
 	InvoiceEntity getInvoiceById(int invoiceId);
 	int updateInvoice(InvoiceRequest invoiceRequest);
 	String deleteInvoiceByid(int invoiceId);
+	List<InvoiceEntity> findInvoiceByStatus(String status);
+	List<InvoiceEntity> fiterInvByStatusAndValue(String status,int invValue);
 }
