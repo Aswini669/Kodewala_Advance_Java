@@ -1,0 +1,5 @@
+id-prefix: ORD
+  max-items: 10
+  default-status: PLACED
+  discount-percentage: 15
+  message: Order service configuration from Config Server
